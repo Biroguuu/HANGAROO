@@ -74,7 +74,7 @@ def Guess():
                 print("Mistakes: ", turns)
                
                 #gameover
-                if turns == 3:
+                if turns == 5:
                     print("We are sorry to say that the kangaroo died.")
                     print("The secret word was", secretWord)
                     break
