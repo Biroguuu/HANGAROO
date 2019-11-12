@@ -1,0 +1,8 @@
+   #guessing function 
+def Guess():
+    turns = 0
+
+#5 tries before game over 
+    while turns < 6:
+        print ("\n", ' '.join(alphabet))
+        guess = input("Please Choose a letter: \n").lower()
