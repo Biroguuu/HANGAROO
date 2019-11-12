@@ -1,0 +1,90 @@
+#modules needed
+import random
+import time
+
+#words to be guessed by the player
+wordList = ['jollibee','mcdonalds','pizzahut', 'chowking','bonchon','dominos','manginasal','zarks','burgerking','kentuckyfriedchicken','greenwich','yoshinoya','wendys','tapaking','subway','icebergs','ambers']
+secretWord = random.choice(wordList)
+length_word = len(secretWord)
+lettersGuessed =[]
+#alphabet to be kept track when answering
+alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+GuessedWord =[]
+
+
+#start function
+def start():
+
+    name = input("Enter your Nickname to start Playing!!! : ")
+    print ("Hello, " + name, "Let's Play Hangaroo Game!\n")
+    time.sleep(1)
+
+
+start()
+
+#secret word function
+def SecretWord():
+    for character in secretWord:
+        GuessedWord.append("_")
+        #time.sleep for a slight delay for the player before answering
+    print ("The word you have to guess has", length_word, "characters")
+    print (' '.join(GuessedWord))
+    time.sleep(1)
+    
+    print ("You can only have 4 mistakes!")
+    time.sleep(1)
+    print ("Please only type 1 letter per guess so that it won't crash!") 
+    time.sleep(1)
+    print ("Hint: ITS A FASTFOOD CHAIN!!! ")
+    time.sleep(1)
+    
+   #guessing function 
+def Guess():
+    turns = 0
+
+#5 tries before game over 
+    while turns < 6:
+        print ("\n", ' '.join(alphabet))
+        guess = input("Please Choose a letter: \n").lower()
+       
+        #when player made incorrect guess
+        if guess not in alphabet:
+            print ("PLEASE CHOOSE WISELY!!! BE CAREFUL!!!")
+            turns +=1
+            print("Mistakes: ", turns)
+       
+        #when player enters a previous answer
+        elif guess in lettersGuessed:
+            print("YOU HAVE ALREADY ENTERED THAT LETTER!!!")
+        else:
+            lettersGuessed.append(guess)
+            
+            #when player guesses a letter correctly
+            if guess in secretWord:
+                print ("GREAT JOB!! YOU'RE DOING GREAT")
+                for x in range(0, length_word):
+                    if secretWord[x] == guess:
+                        GuessedWord[x] = guess
+                        print(' '.join(GuessedWord))
+                alphabet.remove(guess)
+            else:
+                print(" INCORRECT!!!!")
+                alphabet.remove(guess)
+                turns += 1
+                print("Mistakes: ", turns)
+               
+                #gameover
+                if turns == 3:
+                    print("We are sorry to say that the kangaroo died.")
+                    print("The secret word was", secretWord)
+                    break
+                
+                #player win
+        if '_' not in GuessedWord:
+                        print("YOU WON! CONGRATULATIONS!\n")
+                        print("YOU HAVE SAVED THE KANGAROO")
+                        break              
+SecretWord()
+Guess()
+print("Good Game, Well Played")
+                    
