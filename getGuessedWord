@@ -1,0 +1,8 @@
+     #when player guesses a letter correctly
+            if guess in secretWord:
+                print ("GREAT JOB!! YOU'RE DOING GREAT")
+                for x in range(0, length_word):
+                    if secretWord[x] == guess:
+                        GuessedWord[x] = guess
+                        print(' '.join(GuessedWord))
+                alphabet.remove(guess)
